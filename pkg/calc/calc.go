@@ -36,3 +36,10 @@ func Add(a, b int, check bool) int {
 	}
 	return a + b
 }
+
+func Subtract(a, b int, check bool) int {
+	if check {
+		checkSub(a, b)
+	}
+	return a - b
+}
