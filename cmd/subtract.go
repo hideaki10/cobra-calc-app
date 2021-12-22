@@ -12,8 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var check bool
-
 // subtractCmd represents the subtract command
 var subtractCmd = &cobra.Command{
 	Use:   "subtract",

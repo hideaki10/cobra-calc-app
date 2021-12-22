@@ -1,30 +1,36 @@
 /*
-Copyright © 2021 
+Copyright © 2021
 
 */
 package cmd
 
 import (
+	"fmt"
 	"os"
+	"time"
 
 	"github.com/spf13/cobra"
 )
 
-
+var startTime time.Time
+var check bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "calc-app",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Calculate arithmetic expressions",
+	Long:  `Calculate arithmetic expressions.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
+
+	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		startTime = time.Now()
+	},
+	PersistentPostRun: func(cmd *cobra.Command, args []string) {
+		fmt.Printf("duration: %s  \n", time.Since(startTime))
+
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -47,5 +53,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-
